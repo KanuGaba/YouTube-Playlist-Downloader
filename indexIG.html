@@ -1,0 +1,32 @@
+<!-- https://www.instagram.com/oauth/authorize/?client_id=69680b9f312b4aca8220e9b8abcfa75c&redirect_uri=https://www.tjhsst.edu/~2017kgaba/Lab-6/index.html&response_type=token&scope=basic+public_content+follower_list -->
+<html>
+<head>
+	<title>Instagram API</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script type="text/javascript">
+		function onLoad() {
+			var url = document.URL;
+			var oauth = url.substring(64);
+			console.log(oauth);
+			window.history.pushState('', '', '/~2017kgaba/Lab-6/index.html');
+
+			$.ajax({
+				url:"https://api.instagram.com/v1/users/309667735/media/recent/",
+				data:{
+					access_token:oauth
+				},
+				dataType:"JSON",
+				success:function(result){
+					console.log(result);
+				}
+			});
+		}
+	</script>
+</head>
+<body onload="onLoad()">
+	<div id="collage">
+		<img src="https://scontent.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/12950195_475152546027027_1079281624_n.jpg?ig_cache_key=MTIzNzg4NzEwODIxNDYwMzk5Ng%3D%3D.2" style="width:300px;height:300px">
+		<img src="https://scontent.cdninstagram.com/t51.2885-15/sh0.08/e35/p640x640/10644057_219383098405109_1027860280_n.jpg?ig_cache_key=MTE2OTg5ODA2NTE0OTczOTcxNg%3D%3D.2" style="width:150px;height:150px">
+	</div>
+</body>
+</html>
